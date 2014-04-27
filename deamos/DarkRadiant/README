@@ -1,0 +1,95 @@
+DarkRadiant
+===========
+
+DarkRadiant is a level (map) editor for the The Dark Mod, an open-source Doom 3
+modification which is available at http://www.thedarkmod.com
+
+Compiling on Windows
+====================
+
+Prerequisites
+-------------
+
+DarkRadiant is built on Windows using Microsoft Visual C++ 2012 or Visual C++ 2010. 
+The free Express version can be obtained here:
+
+VC++ 2012: http://www.microsoft.com/visualstudio/eng/downloads#d-express-windows-desktop
+VC++ 2010: http://www.microsoft.com/visualstudio/en-us/products/2010-editions/visual-cpp-express
+
+Since DarkRadiant uses a lot of open-source libraries that are not available on
+Windows by default, you will also need to download and install the
+dependencies. 7-Zip packages of the dependencies are available at the following
+URL(s):
+
+32-bit only builds:
+https://github.com/downloads/orbweaver/DarkRadiant/w32deps.7z
+
+64-bit builds:
+https://github.com/downloads/orbweaver/DarkRadiant/w32deps.7z
+https://github.com/downloads/orbweaver/DarkRadiant/w64deps.7z
+
+Note that 64-bit builds need the 32-bit dependencies in addition to their own
+64-bit dependencies.
+
+The dependencies packages need to be extracted into the main DarkRadiant
+source directory, i.e. alongside the include/ and radiant/ directories.
+
+Build
+-----
+
+The main Visual C++ solution file is:
+
+Visual Studio 2012: tools/msvc2012/DarkRadiant.sln
+Visual Studio 2010: tools/msvc2010/DarkRadiant.sln
+
+Open this file with Visual Studio and start a build by right-clicking on the
+top-level "Solution 'DarkRadiant'" item and choosing Build Solution.
+
+Compiling on Linux
+==================
+
+Prerequisites
+-------------
+
+To compile DarkRadiant, a number of libraries (with development headers) are
+required. On an Ubuntu system, the requirements may include any or all of the
+following packages:
+
+ftgl-dev
+libgtkmm-2.4-dev
+libgtkglextmm-x11-1.2-dev
+libxml2-dev
+libglew-dev
+libboost-regex-dev
+libboost-filesystem-dev
+libboost-serialization-dev
+libboost-python-dev
+libboost-test-dev
+python-dev
+libvorbis-dev
+libopenal-dev
+libalut-dev
+libjpeg-dev
+libgtksourceviewmm-2.0-dev
+
+This does not include core development tools such as g++.
+
+Build
+-----
+
+To build DarkRadiant the standard Autotools build process is used:
+
+$ ./configure
+$ make
+$ sudo make install
+
+The available configure options are listed with "./configure --help". There are
+options for debug builds, and enabling or disabling various optional components
+such as audio support and the Dark Mod-specific plugins.
+
+More Information
+================
+
+A more detailed compilation guide can be found on The Dark Mod's wiki:
+
+http://wiki.thedarkmod.com/index.php?title=DarkRadiant_-_Compilation_Guide

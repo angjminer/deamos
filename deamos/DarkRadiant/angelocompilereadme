@@ -1,0 +1,2 @@
+sudo apt-get install libboost-test-dev
+sudo apt-get install automake libtool g++ zlib1g-dev libjpeg62-dev libxml2-dev libgtkmm-2.4-dev libglew1.6-dev libalut-dev libvorbis-dev libboost-dev libboost-regex-dev libboost-filesystem-dev libboost-python-dev libgtkglextmm-x11-1.2-dev ftgl-dev

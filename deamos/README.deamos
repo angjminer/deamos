@@ -1,0 +1,43 @@
+this is a work in progress,
+i havent updated the cmake structure yet
+so you will have complaints when you run the engine, but it should be fine.
+
+you need to make a ~/deamos folder
+in which you put your base folder and assets.
+this is where your config files will be as well.
+
+BUILDING:
+(for now you will have to pay attention to the cmake output for deps, 
+but if you follow the build instructions for the vanilla src and just get the 64 bit you should be fine)
+
+make a folder for your build under deamos
+eg: deamos/mybuild
+
+from your build folder run:
+cmake ../neo
+then make
+
+copy deamos and base.so to ~/deamos
+
+problems/bug atm are:
+monsters with interchangeable heads are headless on client machines,
+as of now any map with a reference to cyberdemon crashes on me.
+CHEATS ARE ENABLED!!!!
+but i think disabling the console after everything is done will be fine.
+there is no way to choose coop game type from multiplayer menu....yet,
+single player maps only have the 1 spawn point, so be prepared to move when you spawn.
+
+to start:
+setup your multiplayer server options,
+instead of starting the server as usual:
+
+bring down the terminal:
+type these commands in order:
+
+si_map game/mars_city1
+spawnServer
+
+clients will find the game in the multiplayer menu.
+
+
+
