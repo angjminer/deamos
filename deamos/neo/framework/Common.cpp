@@ -2558,10 +2558,10 @@ void idCommonLocal::LoadGameDLLbyName( const char *dll, idStr& s ) {
 		s = s.StripFilename();
 		s.AppendPath(dll);
 		gameDLL = sys->DLL_Load(s);
-	if ( !gameDLL ) {
-		common->FatalError( "angelo couldn't load game dynamic library" );
-		return;
-	}		
+	//if ( !gameDLL ) {
+		//common->FatalError( "angelo couldn't load game dynamic library" );
+		//return;
+	//}		
 		common->Warning( "dll %s", dll );//angelo
 
 		
