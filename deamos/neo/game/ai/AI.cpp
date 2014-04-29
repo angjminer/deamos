@@ -3580,7 +3580,7 @@ void idAI::Killed( idEntity *inflictor, idEntity *attacker, int damage, const id
 	SetWaitState( "" );
 
   // Nicemice: we don't allow the client to spawn items
-  if ( !gameLocal.isClient ) {
+  //if ( !gameLocal.isClient ) {//angelo testing put back
 	const idKeyValue *kv = spawnArgs.MatchPrefix( "def_drops", NULL );
 	while( kv ) {
 		idDict args;
@@ -3592,7 +3592,7 @@ void idAI::Killed( idEntity *inflictor, idEntity *attacker, int damage, const id
 		gameLocal.SpawnEntityDef( args );
 		kv = spawnArgs.MatchPrefix( "def_drops", kv );
 	}
-  }
+  //}//angelo testing put back
 
 	if ( ( attacker && attacker->IsType( idPlayer::Type ) ) && ( inflictor && !inflictor->IsType( idSoulCubeMissile::Type ) ) ) {
 		static_cast< idPlayer* >( attacker )->AddAIKill();

@@ -7355,7 +7355,11 @@ create the renderView for the current tic
 void idPlayer::CalculateRenderView( void ) {
 	int i;
 	float range;
-
+	//angelo dedicated server fix for dedicated gives "Illegal instruction"
+	//there is no render going on
+	if(cvarSystem->GetCVarInteger( "net_serverDedicated" ) == 1)
+	  return;
+	//angelo
 	if ( !renderView ) {
 		renderView = new renderView_t;
 	}

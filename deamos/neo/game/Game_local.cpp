@@ -2391,7 +2391,11 @@ void idGameLocal::CalcFov( float base_fov, float &fov_x, float &fov_y ) const {
 	float	y;
 	float	ratio_x;
 	float	ratio_y;
-
+	//angelo dedicated server fix for dedicated gives "Illegal instruction"
+	//there is no render going on
+	if(cvarSystem->GetCVarInteger( "net_serverDedicated" ) == 1)
+	  return;
+	//angelo
 	// first, calculate the vertical fov based on a 640x480 view
 	x = 640.0f / tan( base_fov / 360.0f * idMath::PI );
 	y = atan2( 480.0f, x );
@@ -2399,6 +2403,7 @@ void idGameLocal::CalcFov( float base_fov, float &fov_x, float &fov_y ) const {
 
 	// FIXME: somehow, this is happening occasionally
 	assert( fov_y > 0 );
+
 	if ( fov_y <= 0 ) {
 		Error( "idGameLocal::CalcFov: bad result" );
 	}
@@ -2439,7 +2444,7 @@ void idGameLocal::CalcFov( float base_fov, float &fov_x, float &fov_y ) const {
 	}
 
 	// FIXME: somehow, this is happening occasionally
-	assert( ( fov_x > 0 ) && ( fov_y > 0 ) );
+	assert( ( fov_x > 0 ) && ( fov_y > 0 ) );//angelo dedicated gives "Illegal instruction"
 	if ( ( fov_y <= 0 ) || ( fov_x <= 0 ) ) {
 		Error( "idGameLocal::CalcFov: bad result" );
 	}
