@@ -2551,27 +2551,21 @@ Helper for LoadGameDLL() to make it less painfull to try different dll names.
 */
 void idCommonLocal::LoadGameDLLbyName( const char *dll, idStr& s ) {
 	s.CapLength(0);
+	//looking at this, it looks like there isnt anything here to load from mod folder,got it to load "modname".so, so i will leave it as is.//angelo
 	// try next to the binary first (build tree)
 	if (Sys_GetPath(PATH_EXE, s)) {
 		// "s = " seems superfluous, but works around g++ 4.7 bug else StripFilename()
 		// (and possibly even CapLength()) seems to be "optimized" away and the string contains garbage
 		s = s.StripFilename();
 		s.AppendPath(dll);
+		common->Printf("game library '%s'.\n", s.c_str());//angelo, odd it will not load a mod specific library from next to the binary without this,
+		//eg: fs_game = angmod  dll name = angmod.so..... strange.I put this here to see what it was looking for.
 		gameDLL = sys->DLL_Load(s);
-	//if ( !gameDLL ) {
-		//common->FatalError( "angelo couldn't load game dynamic library" );
-		//return;
-	//}		
-		common->Warning( "dll %s", dll );//angelo
+
 
 		
 	}
-		//s = getenv("HOME");//angelo path
-		//if (s){
-			//idStr::snPrintf(buf, sizeof(buf), "%s/deamos", s);
-			//path = buf;
-			//return true;	  
-		//}
+
 	#if defined(_WIN32)
 		// then the lib/ dir relative to the binary on windows
 		if (!gameDLL && Sys_GetPath(PATH_EXE, s)) {
@@ -2622,11 +2616,13 @@ void idCommonLocal::LoadGameDLL( void ) {
 	sys->DLL_GetFileName(fs_game, dll, sizeof(dll));
 	LoadGameDLLbyName(dll, s);
 
+
 	// there was no gamelib for this mod, use default one from base game
 	if (!gameDLL) {
 		common->Warning( "couldn't load mod-specific %s, defaulting to base game's library!", dll );
 		sys->DLL_GetFileName(BASE_GAMEDIR, dll, sizeof(dll));
 		LoadGameDLLbyName(dll, s);
+
 	}
 
 	if ( !gameDLL ) {

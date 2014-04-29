@@ -16,6 +16,7 @@ cmake_minimum_required(VERSION 2.6)
 # DEBUG_MEMORY		-DID_DEBUG_MEMORY', '-DID_REDIRECT_NEWDELETE
 # LIBC_MALLOC		-DUSE_LIBC_MALLOC=0
 # ID_NOLANADDRESS	-DID_NOLANADDRESS
+#this has been modified for linux use, use the WINCMakeLists.txt for windows, angelo
 
 set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/sys/cmake")
 set(CMAKE_SKIP_RPATH ON CACHE BOOL "Skip RPATH" FORCE)
@@ -26,7 +27,7 @@ include(GNUInstallDirs OPTIONAL RESULT_VARIABLE GNUINSTALLDIRS)
 
 option(CORE			"Build the core" ON)
 option(BASE			"Build the base game code" ON)
-option(D3XP			"Build the d3xp game code" ON)
+option(D3XP			"Build the d3xp game code" OFF)
 option(DEDICATED	"Build the dedicated server" OFF)
 option(ONATIVE		"Optimize for the host CPU" OFF)
 option(SDL2			"Use SDL2 instead of SDL1.2" OFF)
@@ -238,7 +239,7 @@ if(WIN32)
 		wsock32
 	)
 endif()
-
+#angelo fix this to point to home dir---- ~/deamos
 # fallback for cmake versions without GNUInstallDirs
 if(GNUINSTALLDIRS MATCHES "NOTFOUND")
 	set(CMAKE_INSTALL_BINDIR		"bin"

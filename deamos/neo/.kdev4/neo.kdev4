@@ -11,6 +11,9 @@ ProjectRootRelative=./
 Build Directory Path=file:///home/angelo/gameprojects/deamos-engine/deamos/neo/build
 Build Type=Debug
 CMake Binary=file:///usr/bin/cmake
-Environment Profile=
+Environment Profile=default
 Extra Arguments=
 Install Directory=file:///home/angelo
+
+[Project]
+VersionControlSupport=kdevgit
