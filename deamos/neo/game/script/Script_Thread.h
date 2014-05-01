@@ -77,6 +77,7 @@ extern const idEventDef EV_Thread_FadeIn;
 extern const idEventDef EV_Thread_FadeOut;
 extern const idEventDef EV_Thread_FadeTo;
 extern const idEventDef EV_Thread_Restart;
+extern const idEventDef EV_Thread_GetMplayerName;//angelo scripting test	
 
 class idThread : public idClass {
 private:
@@ -187,6 +188,7 @@ private:
 	void						Event_DebugBounds( const idVec3 &color, const idVec3 &mins, const idVec3 &maxs, const float lifetime );
 	void						Event_DrawText( const char *text, const idVec3 &origin, float scale, const idVec3 &color, const int align, const float lifetime );
 	void						Event_InfluenceActive( void );
+	void						Event_GetMplayerName( const char *name);//angelo script test	
 
 public:
 								CLASS_PROTOTYPE( idThread );

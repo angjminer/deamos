@@ -113,6 +113,7 @@ const idEventDef EV_Thread_DebugCircle( "debugCircle", "vvvfdf" );
 const idEventDef EV_Thread_DebugBounds( "debugBounds", "vvvf" );
 const idEventDef EV_Thread_DrawText( "drawText", "svfvdf" );
 const idEventDef EV_Thread_InfluenceActive( "influenceActive", NULL, 'd' );
+const idEventDef EV_Thread_GetMplayerName( "getPlayerName", "s", 's' );//angelo scripting test
 
 CLASS_DECLARATION( idClass, idThread )
 	EVENT( EV_Thread_Execute,				idThread::Event_Execute )
@@ -193,6 +194,7 @@ CLASS_DECLARATION( idClass, idThread )
 	EVENT( EV_Thread_DebugBounds,			idThread::Event_DebugBounds )
 	EVENT( EV_Thread_DrawText,				idThread::Event_DrawText )
 	EVENT( EV_Thread_InfluenceActive,		idThread::Event_InfluenceActive )
+	EVENT( EV_Thread_GetMplayerName,		idThread::Event_GetMplayerName )//angelo scripting test	
 END_CLASS
 
 idThread			*idThread::currentThread = NULL;
@@ -1113,6 +1115,27 @@ void idThread::Event_KillThread( const char *name ) {
 
 /*
 ================
+idThread::Event_GetMplayerName//angelo scripting test
+================
+*/
+void idThread::Event_GetMplayerName( const char *name  ) {
+
+	idStr pLname;
+	int parm1;
+	assert( parm1 >= 0 );
+	if (name = "player1") {parm1 = 0;}
+	else if (name = "player2") {parm1 = 1;}	
+	else if (name = "player3") {parm1 = 2;}
+	else if (name = "player4") {parm1 = 3;}
+	else {Error( "player name not working" );}
+
+
+		pLname = gameLocal.userInfo[ parm1 ].GetString( "ui_name" );
+		idThread::ReturnString( pLname );
+
+}
+/*
+================
 idThread::Event_GetEntity
 ================
 */
@@ -1133,7 +1156,6 @@ void idThread::Event_GetEntity( const char *name ) {
 		ReturnEntity( ent );
 	}
 }
-
 /*
 ================
 idThread::Event_Spawn

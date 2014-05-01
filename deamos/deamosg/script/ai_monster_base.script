@@ -1418,7 +1418,9 @@ boolean monster_base::combat_chase() {
 	float	range;
 	float	attack_flags;
 	float	latestTime; // lms ao
-	
+	entity enemy;
+	enemy = getEnemy();
+	boolean inpain;
 	if ( !AI_ENEMY_VISIBLE || ( enemyRange() > run_distance ) ) {
 		do_run = true;
 	} else {
@@ -1482,15 +1484,36 @@ boolean monster_base::combat_chase() {
 		}
 		// lms ao - if we've waited long enough, find new enemy
 		//if ( sys.numberofClients() > 1 ) {
+		//angelo want the monsters to get mad at people who shoot them. :)
+		//inpain = false;
+		if ( AI_PAIN ) {
+		  inpain = true;//set this because appearently the ai is very forgiving.
+		  //sys.print("ooowwwwch " + enemy.getName() + " (" + getName() + ")\n");
+		  sys.say("ooowwwwch " + enemy.getName());//enemy.getPlayerName());
+		}
+		if( inpain ){
+			latestTime = sys.getTime();
+			if ( (latestTime - timeSinceAttack) > (sys.random(2) + 16) ) {
+				timeSinceAttack = latestTime;
+				clearEnemy();
+				inpain = false;//the monster got over it
+				sys.say("i forgive you " + enemy.getName() + " (" + getName() + ")\n");
+			}//else{
+			  //sys.print("still mad at you " + enemy.getName() + " (" + getName() + ")\n");
+			//}
+		} else {
+
 			latestTime = sys.getTime();
 			if ( (latestTime - timeSinceAttack) > (sys.random(2) + 4) ) {
 				//entity enemy;
 				//enemy = getEnemy();
-				//sys.print("Stops attacking " + enemy.getName() + " (" + getName() + ")\n");
+				sys.print("Stops attacking " + enemy.getName() + " (" + getName() + ")\n");
 
 				timeSinceAttack = latestTime;
 				clearEnemy();
 			}
+		}		  
+		  
 		//}
 		waitFrame();
 	}

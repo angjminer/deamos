@@ -1,14 +1,14 @@
 [Buildset]
-BuildItems=@Variant(\x00\x00\x00\t\x00\x00\x00\x00\x01\x00\x00\x00\x0b\x00\x00\x00\x00\x01\x00\x00\x00\x06\x00n\x00e\x00o)
+BuildItems=@Variant(\x00\x00\x00\t\x00\x00\x00\x00\x00)
 
 [CMake]
 Build Directory Count=1
-CMakeDir=/usr/share/cmake-2.8/Modules
+CMakeDir=file:///usr/share/cmake-2.8/Modules
 Current Build Directory Index=0
 ProjectRootRelative=./
 
 [CMake][CMake Build Directory 0]
-Build Directory Path=file:///home/angelo/gameprojects/deamos-engine/git/deamos/deamos/neo/build
+Build Directory Path=file:///media/1582aab7-c524-426f-a05f-986d8f2bcacb/storage/deamos/deamos/deamos/deamosbuild
 Build Type=Debug
 CMake Binary=file:///usr/bin/cmake
 Environment Profile=default
