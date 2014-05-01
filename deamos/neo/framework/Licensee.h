@@ -50,7 +50,7 @@ If you have questions concerning this license or the applicable additional terms
 
 // default idnet host address
 #ifndef IDNET_HOST
-	#define IDNET_HOST					"idnet.ua-corp.com"
+	#define IDNET_HOST					"localhost"
 #endif
 
 // default idnet master port

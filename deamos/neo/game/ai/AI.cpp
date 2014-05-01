@@ -3366,6 +3366,7 @@ int idAI::ReactionTo( const idEntity *ent ) {
 	}
 
 	const idActor *actor = static_cast<const idActor *>( ent );
+	if ( actor->IsType( idPlayer::Type ) ) return ATTACK_ON_SIGHT | ATTACK_ON_DAMAGE | ATTACK_ON_ACTIVATE;
 	if ( actor->IsType( idPlayer::Type ) && static_cast<const idPlayer *>(actor)->noclip ) {
 		// ignore players in noclip mode
 		return ATTACK_IGNORE;

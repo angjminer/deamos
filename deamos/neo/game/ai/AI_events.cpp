@@ -339,20 +339,33 @@ void idAI::Event_FindEnemy( int useFOV ) {
 	if ( gameLocal.InPlayerPVS( this ) ) {
 		for ( i = 0; i < gameLocal.numClients ; i++ ) {
 			ent = gameLocal.entities[ i ];
+			//gameLocal.Printf( "findenemy'%s' i see you)", ent->name.c_str() );
 
 			if ( !ent || !ent->IsType( idActor::Type ) ) {
 				continue;
 			}
 
 			actor = static_cast<idActor *>( ent );
+			
 			if ( ( actor->health <= 0 ) || !( ReactionTo( actor ) & ATTACK_ON_SIGHT ) ) {
 				continue;
 			}
 
+			//if ( CanSee( actor, useFOV != 0 ) ) {
+				//idThread::ReturnEntity( actor );
+				//gameLocal.Printf( "idcansee '%s' i am after you)", ent->name.c_str() );
+				//return;
+			//}
+			//angelo make monsters attack whoever is closest
+			if ( actor->IsType( idPlayer::Type )){
 			if ( CanSee( actor, useFOV != 0 ) ) {
+				//SetEnemy( static_cast<idActor *>( actor ) );
 				idThread::ReturnEntity( actor );
+				gameLocal.Printf( "angcansee'%s' i see you)", actor->name.c_str() );
 				return;
 			}
+			}
+			//angelo make monsters attack whoever is closest			
 		}
 	}
 
@@ -378,6 +391,7 @@ void idAI::Event_FindEnemyAI( int useFOV ) {
 	bestDist = idMath::INFINITY;
 	bestEnemy = NULL;
 	for ( ent = gameLocal.activeEntities.Next(); ent != NULL; ent = ent->activeNode.Next() ) {
+	  //gameLocal.Printf( "findenemyai'%s' i see you)", ent->name.c_str() );
 		if ( ent->fl.hidden || ent->fl.isDormant || !ent->IsType( idActor::Type ) ) {
 			continue;
 		}
@@ -393,10 +407,21 @@ void idAI::Event_FindEnemyAI( int useFOV ) {
 
 		delta = physicsObj.GetOrigin() - actor->GetPhysics()->GetOrigin();
 		dist = delta.LengthSqr();
+		
+		//if ( ( dist < bestDist ) && CanSee( actor, useFOV != 0 ) ) {
+			//bestDist = dist;
+			//bestEnemy = actor;
+		//}
+		//angelo make monsters attack whoever is closest
+		if ( actor->IsType( idPlayer::Type )){
 		if ( ( dist < bestDist ) && CanSee( actor, useFOV != 0 ) ) {
 			bestDist = dist;
 			bestEnemy = actor;
 		}
+		SetEnemy( static_cast<idActor *>( actor ) );
+		gameLocal.Printf( "'%s' i am after you)", ent->name.c_str() );
+		}
+		//angelo make monsters attack whoever is closest		
 	}
 
 	gameLocal.pvs.FreeCurrentPVS( pvs );
