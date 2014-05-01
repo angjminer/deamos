@@ -361,7 +361,7 @@ void idAI::Event_FindEnemy( int useFOV ) {
 			if ( CanSee( actor, useFOV != 0 ) ) {
 				//SetEnemy( static_cast<idActor *>( actor ) );
 				idThread::ReturnEntity( actor );
-				gameLocal.Printf( "angcansee'%s' i see you)", actor->name.c_str() );
+				//gameLocal.Printf( "angcansee'%s' i see you)", actor->name.c_str() );
 				return;
 			}
 			}
@@ -419,7 +419,7 @@ void idAI::Event_FindEnemyAI( int useFOV ) {
 			bestEnemy = actor;
 		}
 		SetEnemy( static_cast<idActor *>( actor ) );
-		gameLocal.Printf( "'%s' i am after you)", ent->name.c_str() );
+		//gameLocal.Printf( "'%s' i am after you)", ent->name.c_str() );
 		}
 		//angelo make monsters attack whoever is closest		
 	}
